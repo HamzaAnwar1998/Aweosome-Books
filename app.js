@@ -57,11 +57,9 @@ class UI {
   // adding book to list
   static addBookToList(storedBook, index) {
     document.getElementById('booklist-container').innerHTML += `
-    <div>
-        <h4>${storedBook.Title}</h4>
-        <h4>${storedBook.Author}</h4>
+    <div class="table">
+        <h4 class="bt1">${storedBook.Title} by ${storedBook.Author}</h4>
         <button id="${storedBook.ID}" class="remove-btn">Remove</button>
-        <hr>
     </div>
     `;
   }
