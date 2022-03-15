@@ -29,8 +29,8 @@ Install live server extension for your code editor to view the project or direct
 **Misheck Livingi**
 
 - GitHub: [@misheck12](https://github.com/misheck12)
-- Twitter: []()
-- LinkedIn: []()
+- Twitter: [@MisheckLivingi2](https://twitter.com/MisheckLivingi2)
+- LinkedIn: [Mishecklivingi](https://www.linkedin.com/in/misheck-livingi-a0b536142/)
 
 ## 🤝 Contributing
 
