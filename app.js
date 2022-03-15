@@ -1,7 +1,3 @@
-/* eslint-disable max-classes-per-file */
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-use-before-define */
-
 // getting books from LS
 function getBooks() {
   let books;
@@ -12,6 +8,9 @@ function getBooks() {
   }
   return books;
 }
+
+// global variable
+const storedBooks = getBooks();
 
 // adding books to local storage
 function addBook(book) {
@@ -30,9 +29,6 @@ function removeBook(ID) {
   localStorage.setItem('Books', JSON.stringify(storedBooks));
 }
 
-// global variable
-let storedBooks = getBooks();
-
 // Book Class: Represents a book
 class Book {
   constructor(ID, Title, Author) {
@@ -41,13 +37,6 @@ class Book {
     this.Author = Author;
   }
 }
-
-// getting books
-const displayBooks = () => {
-  storedBooks.forEach((storedBook) => {
-    addBookToList(storedBook);
-  });
-};
 
 // adding books to list
 const addBookToList = (storedBook) => {
@@ -59,6 +48,13 @@ const addBookToList = (storedBook) => {
       <hr>
   </div>
   `;
+};
+
+// getting books
+const displayBooks = () => {
+  storedBooks.forEach((storedBook) => {
+    addBookToList(storedBook);
+  });
 };
 
 // clear form fields
