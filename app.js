@@ -20,6 +20,17 @@ class Store {
     storedBooks.push(book);
     localStorage.setItem('Books', JSON.stringify(storedBooks));
   }
+
+  // removing books from LS
+  static removeBook(ID) {
+    const idInNum = Number(ID);
+    storedBooks.forEach((storedBook, index) => {
+      if (storedBook.ID === idInNum) {
+        storedBooks.splice(index, 1);
+      }
+    });
+    localStorage.setItem('Books', JSON.stringify(storedBooks));
+  }
 }
 
 // global variable
@@ -47,9 +58,10 @@ class UI {
   static addBookToList(storedBook, index) {
     document.getElementById('booklist-container').innerHTML += `
     <div>
-        <h3>${storedBook.Title}</h3>
-        <h5>${storedBook.Author}</h5>
-        <button onclick="deleteBook(storedBooks[${index}])">Remove</button>
+        <h4>${storedBook.Title}</h4>
+        <h4>${storedBook.Author}</h4>
+        <button id="${storedBook.ID}" class="remove-btn">Remove</button>
+        <hr>
     </div>
     `;
   }
@@ -58,6 +70,13 @@ class UI {
   static clearForm() {
     document.getElementById('title').value = '';
     document.getElementById('author').value = '';
+  }
+
+  // deleting books from UI
+  static deleteBook(el) {
+    if (el.classList.contains('remove-btn')) {
+      el.parentElement.remove();
+    }
   }
 }
 
@@ -89,9 +108,8 @@ document.getElementById('addBooks-form').addEventListener('submit', (e) => {
   UI.clearForm();
 });
 
-// Event Remove a book
-function deleteBook(book) {
-  const updatedBooks = storedBooks.filter((individualBook) => individualBook.ID !== book.ID);
-  localStorage.setItem('Books', JSON.stringify(updatedBooks));
-  storedBooks = updatedBooks;
-}
+// Event: remove a book
+document.getElementById('booklist-container').addEventListener('click', (e) => {
+  UI.deleteBook(e.target);
+  Store.removeBook(e.target.id);
+});

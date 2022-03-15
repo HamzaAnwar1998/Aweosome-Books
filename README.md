@@ -3,12 +3,7 @@ A simple book list application developed using JavaScript Objects and Local Stor
 
 # Built With
 - Html5
-- Css3
 - JavaScript
-
-## Live Demo
-
-[Project Live Here](https://hamzaanwar1998.github.io/Aweosome-Books/)
 
 ## Getting Started
 
