@@ -12,23 +12,23 @@
     <!-- main wrapper or container -->
     <main class="wrapper">
 
-        <h1>Awesome Books</h1>
+        <h1 class="main-heading">All Awesome Books</h1>
 
         <!-- booklist -->
-        <section id="booklist-container"></section>
+        <section class="booklist-container" id="booklist-container"></section>
         <!-- end of booklist -->
         <br>
 
         <!-- form to add a book -->
-        <form id="addBooks-form" autocomplete="off">
-            <h1>Add a new book</h1>
-            <label for="title"></label>
+        <form class="addbooks-form" id="addBooks-form" autocomplete="off">
+            <h3 class="form-heading">Add a new book</h3>
             <input type="text" id="title" placeholder="Add Book Title" required/>
             <br>
-            <label for="author"></label>
             <input type="text" id="author" placeholder="Add Book Author" required/>
             <br>
-            <button class="submit-btn" type="submit">Add</button>
+            <div class="btn-div">
+                <button class="submit-btn" type="submit">Add</button>
+            </div>
         </form>
         <!-- end of form to add a book -->
 

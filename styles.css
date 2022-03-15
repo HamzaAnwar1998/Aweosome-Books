@@ -8,56 +8,79 @@
     max-width: 1440px;
     overflow-x: hidden;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-#booklist-container{
-    margin: 40px;
+.main-heading{
+    margin: 40px 0;
+}
+
+.booklist-container{
+    margin: 40px 0;
     width: 500px;
+    border: 1px solid;
 }
 
-.table{
+.booklist-container .table{
     display:flex;
     justify-content:space-between;
     text-align:center;
     padding:5px;
-    border: 0.5px solid black;
-    
 }
 
 .table:nth-child(even) {
     background-color: #fff;
-  }
+}
   
-  .table:nth-child(odd) {
+.table:nth-child(odd) {
     background-color: #ececec;
-  }
-
-.bt1{
-    margin-top:0 auto;
-    width: 40px;
-    display:contents;
 }
 
+.bt1{
+    margin-top: 0;
+    display: contents;
+}
 
-h1{
-    text-align:center;
-    margin:40px;
+.addbooks-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 350px;
+}
+
+.form-heading{
+    margin: 40px 0;
+}
+
+.btn-div{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }
 
 .remove-btn{
+    width: 100px;
+    height: 25px;
     border-radius: 4px;
     align-self: flex-end;
 }
 
-.buttom{
-    display: flex;
-    align-self: end;
+.btn-div .submit-btn{
+    width: 100px;
+    height: 35px;
+    outline: none;
 }
 
-#addBooks-form{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 5px;
+.addbooks-form input{
+    width: 100%;
+    height: 45px;
+    text-indent: 3px;
+    outline: none;
+    padding: 5px;
 }
 
