@@ -2,39 +2,36 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-use-before-define */
 
-// Storage Class: handle storage
-class Store {
-  // getting books from LS
-  static getBooks() {
-    let books;
-    if (localStorage.getItem('Books') !== null) {
-      books = JSON.parse(localStorage.getItem('Books'));
-    } else {
-      books = [];
+// getting books from LS
+function getBooks() {
+  let books;
+  if (localStorage.getItem('Books') !== null) {
+    books = JSON.parse(localStorage.getItem('Books'));
+  } else {
+    books = [];
+  }
+  return books;
+}
+
+// adding books to local storage
+function addBook(book) {
+  storedBooks.push(book);
+  localStorage.setItem('Books', JSON.stringify(storedBooks));
+}
+
+// removing books from LS
+function removeBook(ID) {
+  const idInNum = Number(ID);
+  storedBooks.forEach((storedBook, index) => {
+    if (storedBook.ID === idInNum) {
+      storedBooks.splice(index, 1);
     }
-    return books;
-  }
-
-  // adding books to local storage
-  static addBook(book) {
-    storedBooks.push(book);
-    localStorage.setItem('Books', JSON.stringify(storedBooks));
-  }
-
-  // removing books from LS
-  static removeBook(ID) {
-    const idInNum = Number(ID);
-    storedBooks.forEach((storedBook, index) => {
-      if (storedBook.ID === idInNum) {
-        storedBooks.splice(index, 1);
-      }
-    });
-    localStorage.setItem('Books', JSON.stringify(storedBooks));
-  }
+  });
+  localStorage.setItem('Books', JSON.stringify(storedBooks));
 }
 
 // global variable
-let storedBooks = Store.getBooks();
+let storedBooks = getBooks();
 
 // Book Class: Represents a book
 class Book {
@@ -45,43 +42,40 @@ class Book {
   }
 }
 
-// UI Class: handles UI tasks
-class UI {
-  // getting books
-  static displayBooks() {
-    storedBooks.forEach((storedBook, index) => {
-      UI.addBookToList(storedBook, index);
-    });
-  }
+// getting books
+const displayBooks = () => {
+  storedBooks.forEach((storedBook) => {
+    addBookToList(storedBook);
+  });
+};
 
-  // adding book to list
-  static addBookToList(storedBook, index) {
-    document.getElementById('booklist-container').innerHTML += `
-    <div>
-        <h4>${storedBook.Title}</h4>
-        <h4>${storedBook.Author}</h4>
-        <button id="${storedBook.ID}" class="remove-btn">Remove</button>
-        <hr>
-    </div>
-    `;
-  }
+// adding books to list
+const addBookToList = (storedBook) => {
+  document.getElementById('booklist-container').innerHTML += `
+  <div>
+      <h4>${storedBook.Title}</h4>
+      <h4>${storedBook.Author}</h4>
+      <button id="${storedBook.ID}" class="remove-btn">Remove</button>
+      <hr>
+  </div>
+  `;
+};
 
-  // clear form fields
-  static clearForm() {
-    document.getElementById('title').value = '';
-    document.getElementById('author').value = '';
-  }
+// clear form fields
+function clearForm() {
+  document.getElementById('title').value = '';
+  document.getElementById('author').value = '';
+}
 
-  // deleting books from UI
-  static deleteBook(el) {
-    if (el.classList.contains('remove-btn')) {
-      el.parentElement.remove();
-    }
+// deleting books from UI
+function deleteBook(el) {
+  if (el.classList.contains('remove-btn')) {
+    el.parentElement.remove();
   }
 }
 
 // Event Display Books
-document.addEventListener('DOMContentLoaded', UI.displayBooks);
+document.addEventListener('DOMContentLoaded', displayBooks);
 
 // Event Add a book
 document.getElementById('addBooks-form').addEventListener('submit', (e) => {
@@ -99,17 +93,17 @@ document.getElementById('addBooks-form').addEventListener('submit', (e) => {
   const book = new Book(time, bookTitle, bookAuthor);
 
   // adding new book to UI
-  UI.addBookToList(book);
+  addBookToList(book);
 
   // adding book to LS
-  Store.addBook(book);
+  addBook(book);
 
   // clearing form fields
-  UI.clearForm();
+  clearForm();
 });
 
 // Event: remove a book
 document.getElementById('booklist-container').addEventListener('click', (e) => {
-  UI.deleteBook(e.target);
-  Store.removeBook(e.target.id);
+  deleteBook(e.target);
+  removeBook(e.target.id);
 });
