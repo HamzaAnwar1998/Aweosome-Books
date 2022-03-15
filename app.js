@@ -1,33 +1,38 @@
-// getting books from LS
-function getBooks() {
-  let books;
-  if (localStorage.getItem('Books') !== null) {
-    books = JSON.parse(localStorage.getItem('Books'));
-  } else {
-    books = [];
+/* eslint-disable max-classes-per-file */
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-use-before-define */
+class Store {
+  // getting books from LS
+  static getBooks() {
+    let books;
+    if (localStorage.getItem('Books') !== null) {
+      books = JSON.parse(localStorage.getItem('Books'));
+    } else {
+      books = [];
+    }
+    return books;
   }
-  return books;
+
+  // adding books to local storage
+  static addBook(book) {
+    storedBooks.push(book);
+    localStorage.setItem('Books', JSON.stringify(storedBooks));
+  }
+
+  // removing books from local storage
+  static removeBook(ID) {
+    const idInNum = Number(ID);
+    storedBooks.forEach((storedBook, index) => {
+      if (storedBook.ID === idInNum) {
+        storedBooks.splice(index, 1);
+      }
+    });
+    localStorage.setItem('Books', JSON.stringify(storedBooks));
+  }
 }
 
 // global variable
-const storedBooks = getBooks();
-
-// adding books to local storage
-function addBook(book) {
-  storedBooks.push(book);
-  localStorage.setItem('Books', JSON.stringify(storedBooks));
-}
-
-// removing books from LS
-function removeBook(ID) {
-  const idInNum = Number(ID);
-  storedBooks.forEach((storedBook, index) => {
-    if (storedBook.ID === idInNum) {
-      storedBooks.splice(index, 1);
-    }
-  });
-  localStorage.setItem('Books', JSON.stringify(storedBooks));
-}
+const storedBooks = Store.getBooks();
 
 // Book Class: Represents a book
 class Book {
@@ -63,15 +68,16 @@ class UI {
     document.getElementById('author').value = '';
   }
 
-// deleting books from UI
-function deleteBook(el) {
-  if (el.classList.contains('remove-btn')) {
-    el.parentElement.remove();
+  // delete books from UI
+  static deleteBook(el) {
+    if (el.classList.contains('remove-btn')) {
+      el.parentElement.remove();
+    }
   }
 }
 
 // Event Display Books
-document.addEventListener('DOMContentLoaded', displayBooks);
+document.addEventListener('DOMContentLoaded', UI.displayBooks);
 
 // Event Add a book
 document.getElementById('addBooks-form').addEventListener('submit', (e) => {
@@ -89,17 +95,17 @@ document.getElementById('addBooks-form').addEventListener('submit', (e) => {
   const book = new Book(time, bookTitle, bookAuthor);
 
   // adding new book to UI
-  addBookToList(book);
+  UI.addBookToList(book);
 
   // adding book to LS
-  addBook(book);
+  Store.addBook(book);
 
   // clearing form fields
-  clearForm();
+  UI.clearForm();
 });
 
 // Event: remove a book
 document.getElementById('booklist-container').addEventListener('click', (e) => {
-  deleteBook(e.target);
-  removeBook(e.target.id);
+  UI.deleteBook(e.target);
+  Store.removeBook(e.target.id);
 });
