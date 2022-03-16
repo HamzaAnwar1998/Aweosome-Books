@@ -16,11 +16,11 @@
 }
 
 .main-heading{
-    margin: 40px 0;
+    margin: 30px 0;
 }
 
 .booklist-container{
-    margin: 40px 0;
+    margin: 30px 0;
     width: 500px;
     border: 1px solid;
 }
@@ -28,8 +28,8 @@
 .booklist-container .table{
     display:flex;
     justify-content:space-between;
-    text-align:center;
-    padding:5px;
+    align-items:center;
+    padding:15px;
 }
 
 .table:nth-child(even) {
@@ -37,44 +37,31 @@
 }
   
 .table:nth-child(odd) {
-    background-color: #ececec;
+    background-color: #e4e4e4;
 }
 
 .bt1{
-    margin-top: 0;
-    display: contents;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.remove-btn{
+    width: 100px;
+    height: 30px;
+    border-radius: 4px;
+    cursor: pointer;
+    outline: none;
 }
 
 .addbooks-form{
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 350px;
+    width: 400px;
 }
 
 .form-heading{
-    margin: 40px 0;
-}
-
-.btn-div{
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-}
-
-.remove-btn{
-    width: 100px;
-    height: 25px;
-    border-radius: 4px;
-    align-self: flex-end;
-}
-
-.btn-div .submit-btn{
-    width: 100px;
-    height: 35px;
-    outline: none;
-    margin-top: 5px;
+    margin: 30px 0;
 }
 
 .addbooks-form input{
@@ -85,3 +72,17 @@
     padding: 5px;
 }
 
+.btn-div{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.btn-div .submit-btn{
+    width: 100px;
+    height: 35px;
+    outline: none;
+    cursor: pointer;
+    margin-right: -5px;
+}

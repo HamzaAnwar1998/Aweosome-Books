@@ -1,6 +1,7 @@
 /* eslint-disable max-classes-per-file */
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-use-before-define */
+
 class Store {
   // getting books from LS
   static getBooks() {
